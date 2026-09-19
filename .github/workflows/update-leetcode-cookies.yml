@@ -1,18 +1,23 @@
-name: Update Leetcode Cookies
+name: Sync Leetcode
 
 on:
-  schedule:
-    - cron: "0 0 */14 * *"
   workflow_dispatch:
+  schedule:
+    - cron: "0 8 * * 6"
+
+permissions:
+  contents: write
 
 jobs:
-  update_cookies:
+  sync:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Update Leetcode cookies
-        uses: vishrutkmr7/UpdateLCCookies@main
+      - name: Sync LeetCode
+        uses: joshcai/leetcode-sync@v1.7
         with:
-          github-token: ${{ secrets.GITHUB_TOKEN }}
-          leetcode-email: ${{ secrets.LEETCODE_EMAIL }}
-          leetcode-password: ${{ secrets.LEETCODE_PASSWORD }}
+          github-token: ${{ github.token }}
+          leetcode-csrf-token: ${{ secrets.LEETCODE_CSRF_TOKEN }}
+          leetcode-session: ${{ secrets.LEETCODE_SESSION }}
+          verbose: true
+          commit-header: "[LeetCode Sync]"
