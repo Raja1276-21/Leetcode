@@ -11,7 +11,7 @@ jobs:
 
     steps:
       - name: Update Leetcode cookies
-        uses: vishrutkmr7/UpdateLCCookies@v1.0.0
+        uses: vishrutkmr7/UpdateLCCookies@main
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           leetcode-email: ${{ secrets.LEETCODE_EMAIL }}
